@@ -1,4 +1,3 @@
-// src/components/HeroSection.tsx
 import {
   Box,
   Container,
@@ -175,8 +174,9 @@ export const HeroSection: React.FC = () => {
 
               {/* Profile Image */}
               <Image
-                src='https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/profile-photo.jpg'
-                alt='Your Name'
+                src='../../public/abdulazeez_photo.jpg'
+                // src='https://placehold.co/400x250/374151/FFFFFF?text=Image+Not+Found'
+                alt='my-pic'
                 borderRadius='full'
                 objectFit='cover'
                 w='100%'

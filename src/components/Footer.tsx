@@ -3,7 +3,7 @@ import {
   Container,
   Stack,
   Text,
-  Link,
+  Link as ChakraLink,
   HStack,
   Icon,
   Divider,
@@ -11,6 +11,7 @@ import {
   VStack,
   Heading,
 } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   FaGithub,
   FaLinkedin,
@@ -25,10 +26,10 @@ interface FooterLink {
 }
 
 const quickLinks: FooterLink[] = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 const socialLinks = [
@@ -47,12 +48,15 @@ const socialLinks = [
 ];
 
 export const Footer: React.FC = () => {
-  const bgGradient =
-    'linear(110deg, green.900 0%, black 15%, green.900 50%,  black 85%, )';
   const currentYear = new Date().getFullYear();
 
   return (
-    <Box bgGradient={bgGradient} borderTop='1px' borderColor='green.700'>
+    <Box
+      backdropFilter='blur(10px)'
+      bg='rgba(0, 0, 0, 0.7)'
+      borderTop='1px'
+      borderColor='green.700'
+    >
       <Container maxW='container.xl' py='12'>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing='8' mb='8'>
           {/* Brand Section */}
@@ -63,7 +67,7 @@ export const Footer: React.FC = () => {
               bgGradient='linear(to-r, green.300, green.500)'
               bgClip='text'
             >
-              YourName.dev
+              Abdulazeez.dev
             </Text>
             <Text color='gray.300' fontSize='sm'>
               Software Engineer & Full Stack Developer passionate about creating
@@ -71,7 +75,7 @@ export const Footer: React.FC = () => {
             </Text>
             <HStack spacing='3'>
               {socialLinks.map((social, index) => (
-                <Link
+                <ChakraLink
                   key={index}
                   href={social.href}
                   isExternal
@@ -95,7 +99,7 @@ export const Footer: React.FC = () => {
                   >
                     <Icon as={social.icon} boxSize='5' />
                   </Box>
-                </Link>
+                </ChakraLink>
               ))}
             </HStack>
           </VStack>
@@ -107,9 +111,10 @@ export const Footer: React.FC = () => {
             </Heading>
             <Stack spacing='2'>
               {quickLinks.map((link, index) => (
-                <Link
+                <ChakraLink
                   key={index}
-                  href={link.href}
+                  as={RouterLink}
+                  to={link.href}
                   color='gray.300'
                   fontSize='sm'
                   _hover={{
@@ -120,7 +125,7 @@ export const Footer: React.FC = () => {
                   transition='all 0.2s'
                 >
                   {link.name}
-                </Link>
+                </ChakraLink>
               ))}
             </Stack>
           </VStack>
@@ -132,20 +137,20 @@ export const Footer: React.FC = () => {
             </Heading>
             <Stack spacing='2' fontSize='sm' color='gray.300'>
               <Text>Lagos, Nigeria</Text>
-              <Link
-                href='mailto:your.email@example.com'
+              <ChakraLink
+                href='mailto:abdulazeezmuritador9@gmail.com'
                 _hover={{ color: 'green.300' }}
                 transition='color 0.2s'
               >
-                your.email@example.com
-              </Link>
-              <Link
-                href='tel:+12345678900'
+                abdulazeezmuritador9@gmail.com
+              </ChakraLink>
+              <ChakraLink
+                href='tel:+2348148985591'
                 _hover={{ color: 'green.300' }}
                 transition='color 0.2s'
               >
-                +1 (234) 567-8900
-              </Link>
+                +2348148985591
+              </ChakraLink>
             </Stack>
           </VStack>
         </SimpleGrid>
@@ -160,7 +165,7 @@ export const Footer: React.FC = () => {
           spacing='4'
         >
           <Text fontSize='sm' color='gray.300'>
-            © {currentYear} YourName. All rights reserved.
+            © {currentYear} Abdulazeez Muritador. All rights reserved.
           </Text>
           <HStack spacing='1' fontSize='sm' color='gray.300'>
             <Text>Built with</Text>

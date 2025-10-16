@@ -7,9 +7,10 @@ import {
   useDisclosure,
   Stack,
   Container,
-  Link,
+  Link as ChakraLink,
   Text,
 } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoClose } from 'react-icons/io5';
 
@@ -19,10 +20,10 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -43,7 +44,11 @@ export const Navbar: React.FC = () => {
       <Container maxW='container.xl'>
         <Flex h='16' alignItems='center' justifyContent='space-between'>
           {/* Logo */}
-          <Link href='#home' _hover={{ textDecoration: 'none' }}>
+          <ChakraLink
+            as={RouterLink}
+            to='/'
+            _hover={{ textDecoration: 'none' }}
+          >
             <Text
               fontSize='2xl'
               fontWeight='bold'
@@ -52,14 +57,15 @@ export const Navbar: React.FC = () => {
             >
               Abdulazeez.dev
             </Text>
-          </Link>
+          </ChakraLink>
 
           {/* Desktop Navigation */}
           <HStack as='nav' spacing='1' display={{ base: 'none', md: 'flex' }}>
             {navLinks.map((link) => (
-              <Link
+              <ChakraLink
                 key={link.name}
-                href={link.href}
+                as={RouterLink}
+                to={link.href}
                 px='4'
                 py='2'
                 rounded='md'
@@ -74,7 +80,7 @@ export const Navbar: React.FC = () => {
                 transition='all 0.2s'
               >
                 {link.name}
-              </Link>
+              </ChakraLink>
             ))}
           </HStack>
 
@@ -82,7 +88,7 @@ export const Navbar: React.FC = () => {
           <HStack spacing='2'>
             {/* Resume Button */}
             <Button
-              as={Link}
+              as='a'
               href='/resume.pdf'
               download
               colorScheme='green'
@@ -116,9 +122,10 @@ export const Navbar: React.FC = () => {
           <Box pb='4' display={{ md: 'none' }}>
             <Stack as='nav' spacing='2'>
               {navLinks.map((link) => (
-                <Link
+                <ChakraLink
                   key={link.name}
-                  href={link.href}
+                  as={RouterLink}
+                  to={link.href}
                   px='4'
                   py='2'
                   rounded='md'
@@ -132,10 +139,10 @@ export const Navbar: React.FC = () => {
                   onClick={onClose}
                 >
                   {link.name}
-                </Link>
+                </ChakraLink>
               ))}
               <Button
-                as={Link}
+                as='a'
                 href='/resume.pdf'
                 download
                 colorScheme='green'
