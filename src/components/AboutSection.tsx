@@ -1,4 +1,3 @@
-// src/components/AboutSection.tsx
 import {
   Box,
   Container,
@@ -7,67 +6,16 @@ import {
   SimpleGrid,
   Stack,
   Icon,
-  Progress,
-  HStack,
   VStack,
   Flex,
 } from '@chakra-ui/react';
-import { FaCode, FaServer, FaMobile, FaDatabase } from 'react-icons/fa';
-import { type IconType } from 'react-icons';
 
-interface Skill {
-  name: string;
-  level: number;
-  category: string;
-}
-
-interface SkillCategory {
-  title: string;
-  icon: IconType;
-  color: string;
-  description: string;
-}
-
-const skills: Skill[] = [
-  { name: 'JavaScript/TypeScript', level: 90, category: 'frontend' },
-  { name: 'React.js', level: 85, category: 'frontend' },
-  { name: 'Next.js', level: 80, category: 'frontend' },
-  { name: 'HTML/CSS', level: 95, category: 'frontend' },
-  { name: 'Node.js', level: 85, category: 'backend' },
-  { name: 'Express.js', level: 80, category: 'backend' },
-  { name: 'Python', level: 75, category: 'backend' },
-  { name: 'MongoDB', level: 80, category: 'database' },
-  { name: 'PostgreSQL', level: 75, category: 'database' },
-  { name: 'React Native', level: 70, category: 'mobile' },
-];
-
-const skillCategories: SkillCategory[] = [
-  {
-    title: 'Frontend Development',
-    icon: FaCode,
-    color: 'green.300',
-    description:
-      'Building responsive and interactive user interfaces with modern frameworks',
-  },
-  {
-    title: 'Backend Development',
-    icon: FaServer,
-    color: 'green.400',
-    description: 'Creating robust server-side applications and RESTful APIs',
-  },
-  {
-    title: 'Mobile Development',
-    icon: FaMobile,
-    color: 'green.200',
-    description: 'Developing cross-platform mobile applications',
-  },
-  {
-    title: 'Database Management',
-    icon: FaDatabase,
-    color: 'green.500',
-    description: 'Designing and managing efficient database solutions',
-  },
-];
+import {
+  skillCategories,
+  skills,
+  type Skill,
+  type SkillCategory,
+} from '../utils/Skills';
 
 interface SkillCardProps {
   category: SkillCategory;
@@ -112,42 +60,58 @@ const SkillCard: React.FC<SkillCardProps> = ({ category }) => {
   );
 };
 
-interface SkillBarProps {
+interface SkillIconCardProps {
   skill: Skill;
 }
 
-const SkillBar: React.FC<SkillBarProps> = ({ skill }) => {
-  const progressColor = 'green';
-
+const SkillIconCard: React.FC<SkillIconCardProps> = ({ skill }) => {
   return (
-    <Box>
-      <HStack justify='space-between' mb='2'>
-        <Text fontWeight='medium' color='white'>
+    <Box
+      p='6'
+      bg='rgba(255, 255, 255, 0.05)'
+      borderWidth='1px'
+      borderColor='green.700'
+      borderRadius='lg'
+      transition='all 0.3s'
+      backdropFilter='blur(10px)'
+      _hover={{
+        transform: 'translateY(-4px)',
+        boxShadow: 'lg',
+        borderColor: skill.color,
+        bg: 'rgba(255, 255, 255, 0.08)',
+      }}
+    >
+      <VStack spacing='3'>
+        <Flex
+          w='16'
+          h='16'
+          align='center'
+          justify='center'
+          borderRadius='lg'
+          bg='rgba(255, 255, 255, 0.05)'
+          transition='all 0.3s'
+          _hover={{
+            bg: 'rgba(255, 255, 255, 0.1)',
+          }}
+        >
+          <Icon as={skill.icon} boxSize='8' color={skill.color} />
+        </Flex>
+        <Text
+          fontWeight='medium'
+          color='white'
+          fontSize='sm'
+          textAlign='center'
+        >
           {skill.name}
         </Text>
-        <Text fontSize='sm' color='green.300'>
-          {skill.level}%
-        </Text>
-      </HStack>
-      <Progress
-        value={skill.level}
-        size='sm'
-        colorScheme={progressColor}
-        borderRadius='full'
-        bg='rgba(255, 255, 255, 0.1)'
-        sx={{
-          '& > div': {
-            background: 'linear-gradient(90deg, green.400, green.300)',
-          },
-        }}
-      />
+      </VStack>
     </Box>
   );
 };
 
 export const AboutSection: React.FC = () => {
   const bgGradient =
-    'linear(110deg, green.900 0%, black 15%, green.900 50%,  black 85%, )';
+    'linear(110deg, green.900 0%, black 15%, green.900 50%, black 85%)';
 
   return (
     <Box py='20' bgGradient={bgGradient} id='about'>
@@ -174,7 +138,7 @@ export const AboutSection: React.FC = () => {
                   My Journey
                 </Heading>
                 <Text color='gray.300' lineHeight='tall'>
-                  With over X years of experience in software development, I've
+                  With over 5 years of experience in software development, I've
                   worked on diverse projects ranging from e-commerce platforms
                   to real-time applications. I'm constantly learning and
                   adapting to new technologies to deliver the best solutions.
@@ -197,8 +161,8 @@ export const AboutSection: React.FC = () => {
                   databases, cloud services, and DevOps practices.
                 </Text>
                 <Text color='gray.300' lineHeight='tall'>
-                  When I'm not coding, I enjoy contributing to open-source
-                  projects, writing technical articles, and mentoring aspiring
+                  When I'm not coding, I enjoy exploring new technologies,
+                  working on side projects, and sharing knowledge with other
                   developers.
                 </Text>
               </Stack>
@@ -208,7 +172,7 @@ export const AboutSection: React.FC = () => {
           {/* Skill Categories */}
           <Box>
             <Heading size='lg' color='white' mb='8' textAlign='center'>
-              What I Offer
+              What I'm Offering
             </Heading>
             <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing='6'>
               {skillCategories.map((category, index) => (
@@ -222,9 +186,9 @@ export const AboutSection: React.FC = () => {
             <Heading size='lg' color='white' mb='8' textAlign='center'>
               Technical Skills
             </Heading>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing='8'>
+            <SimpleGrid columns={{ base: 2, sm: 3, md: 4, lg: 5 }} spacing='6'>
               {skills.map((skill, index) => (
-                <SkillBar key={index} skill={skill} />
+                <SkillIconCard key={index} skill={skill} />
               ))}
             </SimpleGrid>
           </Box>

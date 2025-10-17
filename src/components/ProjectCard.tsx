@@ -10,7 +10,13 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay, Pagination } from 'swiper/modules';
 import type { Project } from '../types/project';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface ProjectCardProps {
   project: Project;
@@ -33,17 +39,31 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         bg: 'rgba(255, 255, 255, 0.08)',
       }}
     >
-      {/* Project Image */}
+      {/* 🔁 Image Slider */}
       <Box position='relative' overflow='hidden' h='240px'>
-        <Image
-          src={project.images[0]}
-          alt={project.name}
-          objectFit='cover'
-          w='100%'
-          h='100%'
-          transition='transform 0.3s'
-          _hover={{ transform: 'scale(1.05)' }}
-        />
+        <Swiper
+          modules={[Navigation, Autoplay, Pagination]}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000 }}
+          loop
+          style={{ width: '100%', height: '100%' }}
+        >
+          {project.images.map((img, index) => (
+            <SwiperSlide key={index}>
+              <Image
+                src={img}
+                alt={`${project.name}-${index}`}
+                objectFit='cover'
+                w='100%'
+                h='100%'
+                transition='transform 0.3s'
+                _hover={{ transform: 'scale(1.05)' }}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
         {project.featured && (
           <Badge
             position='absolute'
@@ -61,20 +81,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         )}
       </Box>
 
-      {/* Project Content */}
+      {/* 📄 Content */}
       <Box p='6'>
         <Stack spacing='3'>
-          {/* Project Name */}
           <Heading size='md' noOfLines={1} color='white'>
             {project.name}
           </Heading>
 
-          {/* Description */}
           <Text color='gray.300' noOfLines={3} fontSize='sm'>
             {project.description}
           </Text>
 
-          {/* Technologies */}
           <HStack spacing='2' flexWrap='wrap'>
             {project.technologies.map((tech, index) => (
               <Badge
@@ -89,7 +106,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             ))}
           </HStack>
 
-          {/* Action Buttons */}
           <HStack spacing='3' pt='2'>
             {project.githubUrl && (
               <Button

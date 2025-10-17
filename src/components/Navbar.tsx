@@ -54,8 +54,9 @@ export const Navbar: React.FC = () => {
               fontWeight='bold'
               bgGradient='linear(to-r, green.300, green.500)'
               bgClip='text'
+              fontFamily='"Lobster", cursive'
             >
-              Abdulazeez.dev
+              OBASI
             </Text>
           </ChakraLink>
 

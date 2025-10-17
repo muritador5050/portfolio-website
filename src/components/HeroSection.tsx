@@ -6,13 +6,14 @@ import {
   Button,
   Stack,
   HStack,
-  Image,
   Link,
   Flex,
+  Avatar,
 } from '@chakra-ui/react';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
 import { HiDownload } from 'react-icons/hi';
 import { bgGradient } from '../App';
+import { BsArrowUpRight } from 'react-icons/bs';
 
 export const HeroSection: React.FC = () => {
   return (
@@ -46,7 +47,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Name */}
             <Heading as='h1' size='3xl' color='white' lineHeight='1.2'>
-              Your Name Here
+              Abdulazeez Muritador
             </Heading>
 
             {/* Title/Role */}
@@ -65,7 +66,9 @@ export const HeroSection: React.FC = () => {
             <HStack spacing='4' pt='4'>
               <Button
                 as={Link}
-                href='#projects'
+                href='https://wa.me/2348148985591?text=Hello%20I%20would%20like%20to%20work%20with%20you'
+                target='_blank'
+                rel='noopener noreferrer'
                 size='lg'
                 colorScheme='green'
                 px='8'
@@ -74,8 +77,11 @@ export const HeroSection: React.FC = () => {
                   transform: 'translateY(-2px)',
                 }}
                 transition='all 0.2s'
+                display='flex'
+                alignItems='center'
+                gap={2}
               >
-                View My Work
+                Let's Talk <BsArrowUpRight size={16} />
               </Button>
               <Button
                 as={Link}
@@ -100,7 +106,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Social Links */}
             <HStack spacing='4' pt='4'>
-              <Link href='https://github.com/yourusername' isExternal>
+              <Link href='https://github.com/muritador5050' isExternal>
                 <Button
                   size='lg'
                   variant='ghost'
@@ -111,7 +117,10 @@ export const HeroSection: React.FC = () => {
                   GitHub
                 </Button>
               </Link>
-              <Link href='https://linkedin.com/in/yourusername' isExternal>
+              <Link
+                href='https://linkedin.com/in/abdulazeez-muritador'
+                isExternal
+              >
                 <Button
                   size='lg'
                   variant='ghost'
@@ -122,8 +131,14 @@ export const HeroSection: React.FC = () => {
                   LinkedIn
                 </Button>
               </Link>
-              <Link href='https://twitter.com/yourusername' isExternal>
+              <Link
+                href='https://twitter.com/az'
+                target='_blank'
+                rel='noopener noreferrer'
+                isExternal
+              >
                 <Button
+                  colorScheme='twitter'
                   size='lg'
                   variant='ghost'
                   color='white'
@@ -133,7 +148,7 @@ export const HeroSection: React.FC = () => {
                   Twitter
                 </Button>
               </Link>
-              <Link href='mailto:your.email@example.com'>
+              <Link href='mailto:abdulazeezmuritador9@gmail.com'>
                 <Button
                   size='lg'
                   variant='ghost'
@@ -172,28 +187,35 @@ export const HeroSection: React.FC = () => {
                 filter='blur(40px)'
               />
 
-              {/* Profile Image */}
-              <Image
-                src='../../public/abdulazeez_photo.jpg'
-                // src='https://placehold.co/400x250/374151/FFFFFF?text=Image+Not+Found'
-                alt='my-pic'
-                borderRadius='full'
-                objectFit='cover'
+              {/* Gradient Border Container */}
+              <Box
+                position='relative'
                 w='100%'
                 h='100%'
-                border='8px solid'
-                borderColor='white'
+                borderRadius='full'
+                bgGradient='linear(135deg, green.300, green.500, cyan.400, green.300)'
+                p='8px'
                 boxShadow='2xl'
-                position='relative'
                 zIndex='1'
-              />
+              >
+                {/* Profile Image */}
+                <Avatar
+                  src='../../public/abdul_photo.png'
+                  name='Abdulazeez'
+                  borderRadius='full'
+                  w='100%'
+                  h='100%'
+                  border='none'
+                  position='relative'
+                />
+              </Box>
 
               {/* Floating Badge */}
               <Box
                 position='absolute'
                 bottom='8'
                 right='-4'
-                bg='white'
+                bgGradient={bgGradient}
                 px='6'
                 py='3'
                 borderRadius='full'
@@ -202,7 +224,7 @@ export const HeroSection: React.FC = () => {
                 borderColor='green.500'
                 zIndex='2'
               >
-                <Text fontWeight='bold' color='green.600'>
+                <Text fontWeight='bold' color='green.200'>
                   Available for work
                 </Text>
               </Box>
