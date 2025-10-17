@@ -30,7 +30,7 @@ export const ProjectsSection: React.FC = () => {
             My Projects
           </Heading>
           <Text fontSize='lg' color='gray.300' maxW='2xl' mx='auto'>
-            Here are some of my recent projects that showcase my skills in
+            Here are some of my side projects that showcase my skills in
             software development and engineering.
           </Text>
         </Box>

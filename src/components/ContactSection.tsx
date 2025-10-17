@@ -16,6 +16,14 @@ import {
   VStack,
   Link,
   useToast,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+  useDisclosure,
 } from '@chakra-ui/react';
 import {
   FaEnvelope,
@@ -24,6 +32,7 @@ import {
   FaGithub,
   FaLinkedin,
   FaTwitter,
+  FaCheckCircle,
 } from 'react-icons/fa';
 import { type IconType } from 'react-icons';
 
@@ -45,14 +54,14 @@ const contactInfo: ContactInfo[] = [
   {
     icon: FaEnvelope,
     label: 'Email',
-    value: 'your.email@example.com',
-    href: 'mailto:your.email@example.com',
+    value: 'abdulazeezmuritador9@gmail.com',
+    href: 'mailto:abdulazeezmuritador9@gmail.com',
   },
   {
     icon: FaPhone,
     label: 'Phone',
-    value: '+1 (234) 567-8900',
-    href: 'tel:+12345678900',
+    value: '+(234)814-898-5591',
+    href: 'tel:+2348148985591',
   },
   {
     icon: FaMapMarkerAlt,
@@ -62,15 +71,15 @@ const contactInfo: ContactInfo[] = [
 ];
 
 const socialLinks = [
-  { icon: FaGithub, href: 'https://github.com/yourusername', label: 'GitHub' },
+  { icon: FaGithub, href: 'https://github.com/muritador5050', label: 'GitHub' },
   {
     icon: FaLinkedin,
-    href: 'https://linkedin.com/in/yourusername',
+    href: 'https://linkedin.com/in/abdulazeez-muritador',
     label: 'LinkedIn',
   },
   {
     icon: FaTwitter,
-    href: 'https://twitter.com/yourusername',
+    href: 'https://twitter.com/Az',
     label: 'Twitter',
   },
 ];
@@ -78,6 +87,56 @@ const socialLinks = [
 interface ContactInfoCardProps {
   info: ContactInfo;
 }
+
+// const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
+//   const content = (
+//     <HStack
+//       spacing='4'
+//       p='6'
+//       bg='rgba(255, 255, 255, 0.05)'
+//       borderWidth='1px'
+//       borderColor='green.700'
+//       borderRadius='xl'
+//       transition='all 0.3s'
+//       backdropFilter='blur(10px)'
+//       _hover={{
+//         transform: 'translateY(-4px)',
+//         boxShadow: 'xl',
+//         borderColor: 'green.500',
+//         bg: 'rgba(255, 255, 255, 0.08)',
+//       }}
+//     >
+//       <Box
+//         w='12'
+//         h='12'
+//         display='flex'
+//         alignItems='center'
+//         justifyContent='center'
+//         borderRadius='lg'
+//         bg='rgba(72, 187, 120, 0.2)'
+//         color='green.300'
+//       >
+//         <Icon as={info.icon} boxSize='6' />
+//       </Box>
+//       <VStack align='start' spacing='1'>
+//         <Text fontSize='sm' color='green.300' fontWeight='medium'>
+//           {info.label}
+//         </Text>
+//         <Text fontWeight='semibold' color='white'>
+//           {info.value}
+//         </Text>
+//       </VStack>
+//     </HStack>
+//   );
+
+//   return info.href ? (
+//     <Link href={info.href} _hover={{ textDecoration: 'none' }}>
+//       {content}
+//     </Link>
+//   ) : (
+//     content
+//   );
+// };
 
 const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
   const content = (
@@ -96,10 +155,12 @@ const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
         borderColor: 'green.500',
         bg: 'rgba(255, 255, 255, 0.08)',
       }}
+      align='flex-start'
     >
       <Box
         w='12'
         h='12'
+        minW='12'
         display='flex'
         alignItems='center'
         justifyContent='center'
@@ -109,11 +170,17 @@ const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
       >
         <Icon as={info.icon} boxSize='6' />
       </Box>
-      <VStack align='start' spacing='1'>
+      <VStack align='start' spacing='1' minW='0' flex='1'>
         <Text fontSize='sm' color='green.300' fontWeight='medium'>
           {info.label}
         </Text>
-        <Text fontWeight='semibold' color='white'>
+        <Text
+          fontWeight='semibold'
+          color='white'
+          wordBreak='break-all'
+          overflowWrap='anywhere'
+          fontSize={{ base: 'sm', md: 'md' }}
+        >
           {info.value}
         </Text>
       </VStack>
@@ -131,7 +198,9 @@ const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
 
 export const ContactSection: React.FC = () => {
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitterName, setSubmitterName] = useState('');
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -155,26 +224,54 @@ export const ContactSection: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission (replace with your actual form handling)
-    setTimeout(() => {
+    try {
+      const response = await fetch(
+        'https://formsubmit.co/abdulazeezmuritador9@gmail.com',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        // Save name for thank you message
+        setSubmitterName(formData.name);
+
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+
+        // Show thank you modal
+        onOpen();
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch {
       toast({
-        title: 'Message sent!',
-        description: "Thank you for reaching out. I'll get back to you soon.",
-        status: 'success',
+        title: 'Error sending message',
+        description:
+          'Something went wrong. Please try again or email me directly.',
+        status: 'error',
         duration: 5000,
         isClosable: true,
         position: 'top',
       });
-
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -276,7 +373,7 @@ export const ContactSection: React.FC = () => {
                     type='email'
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder='your.email@example.com'
+                    placeholder='abdulazeezmuritador9@gmail.com'
                     size='lg'
                     bg='rgba(255, 255, 255, 0.1)'
                     borderColor='green.700'
@@ -348,6 +445,75 @@ export const ContactSection: React.FC = () => {
           </Box>
         </SimpleGrid>
       </Container>
+
+      {/* Thank You Modal */}
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size='lg'>
+        <ModalOverlay backdropFilter='blur(10px)' />
+        <ModalContent
+          bg='rgba(0, 0, 0, 0.95)'
+          borderWidth='2px'
+          borderColor='green.500'
+          borderRadius='2xl'
+          p='4'
+        >
+          <ModalCloseButton color='white' />
+          <ModalHeader>
+            <VStack spacing='4' pt='4'>
+              <Box
+                w='20'
+                h='20'
+                display='flex'
+                alignItems='center'
+                justifyContent='center'
+                borderRadius='full'
+                bg='rgba(72, 187, 120, 0.2)'
+                border='3px solid'
+                borderColor='green.500'
+              >
+                <Icon as={FaCheckCircle} boxSize='10' color='green.400' />
+              </Box>
+              <Heading size='xl' color='white' textAlign='center'>
+                Message Sent Successfully!
+              </Heading>
+            </VStack>
+          </ModalHeader>
+          <ModalBody>
+            <VStack spacing='4' py='4'>
+              <Text fontSize='lg' color='gray.300' textAlign='center'>
+                Thank you for reaching out, {submitterName}! 🎉
+              </Text>
+              <Text color='gray.400' textAlign='center'>
+                I've received your message and will get back to you as soon as
+                possible. Usually within 24-48 hours.
+              </Text>
+              <Box
+                w='full'
+                p='4'
+                bg='rgba(72, 187, 120, 0.1)'
+                borderRadius='lg'
+                borderWidth='1px'
+                borderColor='green.700'
+              >
+                <Text fontSize='sm' color='green.300' textAlign='center'>
+                  💡 In the meantime, feel free to check out my projects or
+                  connect with me on social media!
+                </Text>
+              </Box>
+            </VStack>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              colorScheme='green'
+              size='lg'
+              w='full'
+              onClick={onClose}
+              _hover={{ transform: 'translateY(-2px)' }}
+            >
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };

@@ -3,16 +3,20 @@ import {
   Flex,
   HStack,
   IconButton,
-  Button,
   useDisclosure,
-  Stack,
   Container,
   Link as ChakraLink,
   Text,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  VStack,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { IoClose } from 'react-icons/io5';
 
 interface NavLink {
   name: string;
@@ -56,7 +60,7 @@ export const Navbar: React.FC = () => {
               bgClip='text'
               fontFamily='"Lobster", cursive'
             >
-              OBASI
+              ABDUL
             </Text>
           </ChakraLink>
 
@@ -87,76 +91,70 @@ export const Navbar: React.FC = () => {
 
           {/* Right Side Actions */}
           <HStack spacing='2'>
-            {/* Resume Button */}
-            <Button
-              as='a'
-              href='/resume.pdf'
-              download
-              colorScheme='green'
-              size='sm'
-              display={{ base: 'none', md: 'flex' }}
-              _hover={{
-                textDecoration: 'none',
-                transform: 'translateY(-1px)',
-              }}
-              transition='all 0.2s'
-            >
-              Resume
-            </Button>
-
             {/* Mobile menu button */}
             <IconButton
               size='md'
-              icon={isOpen ? <IoClose /> : <GiHamburgerMenu />}
+              icon={<GiHamburgerMenu />}
               aria-label='Open Menu'
               display={{ md: 'none' }}
-              onClick={isOpen ? onClose : onOpen}
+              onClick={onOpen}
               color='white'
               bg='transparent'
               _hover={{ bg: 'green.700' }}
             />
           </HStack>
         </Flex>
+      </Container>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <Box pb='4' display={{ md: 'none' }}>
-            <Stack as='nav' spacing='2'>
+      {/* Mobile Navigation Drawer */}
+      <Drawer isOpen={isOpen} placement='right' onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent
+          bg='rgba(0, 0, 0, 0.95)'
+          borderLeft='1px'
+          borderColor='green.700'
+        >
+          <DrawerCloseButton color='white' />
+          <DrawerHeader borderBottom='1px' borderColor='green.700'>
+            <Text
+              fontSize='2xl'
+              fontWeight='bold'
+              bgGradient='linear(to-r, green.300, green.500)'
+              bgClip='text'
+              fontFamily='"Lobster", cursive'
+            >
+              ABDUL
+            </Text>
+          </DrawerHeader>
+
+          <DrawerBody pt='6'>
+            <VStack as='nav' spacing='3' align='stretch'>
               {navLinks.map((link) => (
                 <ChakraLink
                   key={link.name}
                   as={RouterLink}
                   to={link.href}
                   px='4'
-                  py='2'
+                  py='3'
                   rounded='md'
                   fontWeight='medium'
+                  fontSize='lg'
                   color='gray.300'
                   _hover={{
                     textDecoration: 'none',
                     bg: 'green.800',
                     color: 'green.100',
                   }}
+                  transition='all 0.2s'
                   onClick={onClose}
                 >
                   {link.name}
                 </ChakraLink>
               ))}
-              <Button
-                as='a'
-                href='/resume.pdf'
-                download
-                colorScheme='green'
-                size='sm'
-                w='full'
-                _hover={{ textDecoration: 'none' }}
-              >
-                Download Resume
-              </Button>
-            </Stack>
-          </Box>
-        )}
-      </Container>
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Box>
   );
 };
