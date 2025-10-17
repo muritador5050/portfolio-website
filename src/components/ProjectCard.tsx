@@ -13,10 +13,7 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, Pagination } from 'swiper/modules';
 import type { Project } from '../types/project';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import 'swiper/swiper-bundle.css';
 
 interface ProjectCardProps {
   project: Project;
@@ -40,7 +37,31 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       }}
     >
       {/* 🔁 Image Slider */}
-      <Box position='relative' overflow='hidden' h='240px'>
+      <Box
+        position='relative'
+        overflow='hidden'
+        h='240px'
+        sx={{
+          '.swiper-button-next, .swiper-button-prev': {
+            color: 'green.900',
+            width: '30px',
+            height: '30px',
+            '&:after': {
+              fontSize: '20px',
+              fontWeight: 'bold',
+            },
+          },
+          '.swiper-button-next:hover, .swiper-button-prev:hover': {
+            color: 'green.300',
+          },
+          '.swiper-pagination-bullet': {
+            bg: 'white',
+          },
+          '.swiper-pagination-bullet-active': {
+            bg: 'green.500',
+          },
+        }}
+      >
         <Swiper
           modules={[Navigation, Autoplay, Pagination]}
           navigation

@@ -7,8 +7,27 @@ export const projects: Project[] = [
     description:
       'A full-stack e-commerce application featuring product management, secure payments, and user authentication. Built for scalability and a smooth shopping experience.',
     images: [
-      'https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/project1-main.jpg',
-      'https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/project1-detail.jpg',
+      '/ecommerce/mv01.png',
+      '/ecommerce/mv02.png',
+      '/ecommerce/mv03.png',
+      '/ecommerce/mv04.png',
+      '/ecommerce/mv05.png',
+      '/ecommerce/mv06.png',
+      '/ecommerce/mv07.png',
+      '/ecommerce/mv08.png',
+      '/ecommerce/mv09.png',
+      '/ecommerce/mv001.png',
+      '/ecommerce/mv002.png',
+      '/ecommerce/mv003.png',
+      '/ecommerce/mv004.png',
+      '/ecommerce/mv005.png',
+      '/ecommerce/mv006.png',
+      '/ecommerce/mv007.png',
+      '/ecommerce/mv008.png',
+      '/ecommerce/mv009.png',
+      '/ecommerce/mv1.png',
+      '/ecommerce/mv11.png',
+      '/ecommerce/mv12.png',
     ],
     technologies: [
       'React',
@@ -30,7 +49,22 @@ export const projects: Project[] = [
     description:
       'An installable PWA for computer-based testing with real-time analytics, reporting, and monitoring. Built to support large-scale test sessions with smooth performance.',
     images: [
-      'https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/project2-main.jpg',
+      'testwise/testwise-1.png',
+      'testwise/testwise-2.png',
+      'testwise/testwise-3.png',
+      'testwise/testwise-4.png',
+      'testwise/testwise-5.png',
+      'testwise/testwise-6.png',
+      'testwise/testwise-7.png',
+      'testwise/testwise-8.png',
+      'testwise/testwise-9.png',
+      'testwise/testwise-10.png',
+      'testwise/testwise-11.png',
+      'testwise/testwise-12.png',
+      'testwise/testwise-13.png',
+      'testwise/testwise-14.png',
+      'testwise/testwise-15.png',
+      'testwise/testwise-16.png',
     ],
     technologies: [
       'TypeScript',
@@ -51,7 +85,9 @@ export const projects: Project[] = [
     description:
       'A PWA (installable) real-time weather application with geolocation forecasts, interactive maps, and a clean UI optimized for mobile and desktop.',
     images: [
-      'https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/project3-main.jpg',
+      '/weather/meteometric-1.png',
+      '/weather/meteometric-2.png',
+      '/weather/meteometric-3.png',
     ],
     technologies: ['React', 'OpenWeather API', 'Chakra UI', 'Mapbox'],
     githubUrl: 'https://github.com/muritador5050/meteometric-dashboard',
@@ -65,7 +101,18 @@ export const projects: Project[] = [
     description:
       'A modern enterprise application built with Next.js and Firebase. It includes real-time communication, calendar scheduling, and a responsive management dashboard.',
     images: [
-      'https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/project3-main.jpg',
+      'enterprise/ent001.png',
+      'enterprise/ent002.png',
+      'enterprise/ent003.png',
+      'enterprise/ent004.png',
+      'enterprise/ent005.png',
+      'enterprise/ent006.png',
+      'enterprise/ent007.png',
+      'enterprise/ent008.png',
+      'enterprise/ent009.png',
+      'enterprise/ent010.png',
+      'enterprise/ent011.png',
+      'enterprise/ent012.png',
     ],
     technologies: ['Next.js', 'Firebase', 'Chakra UI', 'TypeScript'],
     githubUrl: 'https://github.com/muritador5050/enterprise-suite',
@@ -78,9 +125,7 @@ export const projects: Project[] = [
     name: 'QR-Forge',
     description:
       'A PWA (installable) QR code generator with customizable styling, history management, and multiple export formats. Optimized for fast and offline usage.',
-    images: [
-      'https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/project3-main.jpg',
-    ],
+    images: ['/qr-forge/qr-forge-1.png', '/qr-forge/qr-forge-2.png'],
     technologies: ['React', 'TypeScript', 'Chakra UI'],
     githubUrl: 'https://github.com/muritador5050/qr-forge',
     liveUrl: 'https://qr-forge-pro.netlify.app',
@@ -92,9 +137,7 @@ export const projects: Project[] = [
     name: 'Currency Converter & Calculator',
     description:
       'A simple and responsive currency converter and calculator with live exchange rate updates. Built with a clean UI and lightweight architecture.',
-    images: [
-      'https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/project3-main.jpg',
-    ],
+    images: ['/currency-cal/cal001.png', '/currency-cal/cal002.png'],
     technologies: ['React', 'Chakra UI', 'Exchange Rate API'],
     githubUrl:
       'https://github.com/muritador5050/calculator_-_currency_converter',
