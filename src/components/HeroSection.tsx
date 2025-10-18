@@ -276,7 +276,7 @@ export const HeroSection: React.FC = () => {
               >
                 {/* Profile Image */}
                 <Avatar
-                  src='../../public/abdul_photo.png'
+                  src='/abdul_photo.png'
                   name='Abdulazeez'
                   borderRadius='full'
                   w='100%'

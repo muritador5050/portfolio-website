@@ -10,10 +10,7 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay, Pagination } from 'swiper/modules';
 import type { Project } from '../types/project';
-import 'swiper/swiper-bundle.css';
 
 interface ProjectCardProps {
   project: Project;
@@ -36,54 +33,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         bg: 'rgba(255, 255, 255, 0.08)',
       }}
     >
-      {/* 🔁 Image Slider */}
-      <Box
-        position='relative'
-        overflow='hidden'
-        h='240px'
-        sx={{
-          '.swiper-button-next, .swiper-button-prev': {
-            color: 'green.900',
-            width: '30px',
-            height: '30px',
-            '&:after': {
-              fontSize: '20px',
-              fontWeight: 'bold',
-            },
-          },
-          '.swiper-button-next:hover, .swiper-button-prev:hover': {
-            color: 'green.300',
-          },
-          '.swiper-pagination-bullet': {
-            bg: 'white',
-          },
-          '.swiper-pagination-bullet-active': {
-            bg: 'green.500',
-          },
-        }}
-      >
-        <Swiper
-          modules={[Navigation, Autoplay, Pagination]}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000 }}
-          loop
-          style={{ width: '100%', height: '100%' }}
-        >
-          {project.images.map((img, index) => (
-            <SwiperSlide key={index}>
-              <Image
-                src={img}
-                alt={`${project.name}-${index}`}
-                objectFit='cover'
-                w='100%'
-                h='100%'
-                transition='transform 0.3s'
-                _hover={{ transform: 'scale(1.05)' }}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      {/* 🖼️ Image */}
+      <Box position='relative' overflow='hidden' h='240px'>
+        <Image
+          src={project.images[0]}
+          fallbackSrc='https://via.placeholder.com/400x300?text=Image+Not+Found'
+          alt={project.name}
+          objectFit='cover'
+          w='100%'
+          h='100%'
+          transition='transform 0.3s'
+          _hover={{ transform: 'scale(1.05)' }}
+        />
 
         {project.featured && (
           <Badge

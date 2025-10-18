@@ -33,15 +33,15 @@ const quickLinks: FooterLink[] = [
 ];
 
 const socialLinks = [
-  { icon: FaGithub, href: 'https://github.com/yourusername', label: 'GitHub' },
+  { icon: FaGithub, href: 'https://github.com/muritador5050', label: 'GitHub' },
   {
     icon: FaLinkedin,
-    href: 'https://linkedin.com/in/yourusername',
+    href: 'https://linkedin.com/in/abdulazeez-muritador',
     label: 'LinkedIn',
   },
   {
     icon: FaTwitter,
-    href: 'https://twitter.com/yourusername',
+    href: 'https://twitter.com/Az',
     label: 'Twitter',
   },
   { icon: FaEnvelope, href: 'mailto:your.email@example.com', label: 'Email' },
@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
   return (
     <Box
       backdropFilter='blur(10px)'
-      bg='rgba(0, 0, 0, 0.7)'
+      bg='rgba(0, 0, 0, 0.95)'
       borderTop='1px'
       borderColor='green.700'
     >
@@ -149,7 +149,7 @@ export const Footer: React.FC = () => {
                 _hover={{ color: 'green.300' }}
                 transition='color 0.2s'
               >
-                +2348148985591
+                +234-8148-985-591
               </ChakraLink>
             </Stack>
           </VStack>

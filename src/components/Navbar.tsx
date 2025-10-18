@@ -37,12 +37,12 @@ export const Navbar: React.FC = () => {
     <Box
       px={4}
       borderBottom='1px'
-      borderColor='green.700'
+      borderColor='green.500'
       position='sticky'
       top='0'
       zIndex='1000'
-      backdropFilter='blur(10px)'
-      bg='rgba(0, 0, 0, 0.7)'
+      // backdropFilter='blur(10px)'
+      bg='rgba(0, 0, 0, 0.95)'
       boxShadow='sm'
     >
       <Container maxW='container.xl'>

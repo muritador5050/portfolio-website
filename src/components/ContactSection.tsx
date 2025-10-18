@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import {
   Box,
   Container,
@@ -88,56 +89,6 @@ interface ContactInfoCardProps {
   info: ContactInfo;
 }
 
-// const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
-//   const content = (
-//     <HStack
-//       spacing='4'
-//       p='6'
-//       bg='rgba(255, 255, 255, 0.05)'
-//       borderWidth='1px'
-//       borderColor='green.700'
-//       borderRadius='xl'
-//       transition='all 0.3s'
-//       backdropFilter='blur(10px)'
-//       _hover={{
-//         transform: 'translateY(-4px)',
-//         boxShadow: 'xl',
-//         borderColor: 'green.500',
-//         bg: 'rgba(255, 255, 255, 0.08)',
-//       }}
-//     >
-//       <Box
-//         w='12'
-//         h='12'
-//         display='flex'
-//         alignItems='center'
-//         justifyContent='center'
-//         borderRadius='lg'
-//         bg='rgba(72, 187, 120, 0.2)'
-//         color='green.300'
-//       >
-//         <Icon as={info.icon} boxSize='6' />
-//       </Box>
-//       <VStack align='start' spacing='1'>
-//         <Text fontSize='sm' color='green.300' fontWeight='medium'>
-//           {info.label}
-//         </Text>
-//         <Text fontWeight='semibold' color='white'>
-//           {info.value}
-//         </Text>
-//       </VStack>
-//     </HStack>
-//   );
-
-//   return info.href ? (
-//     <Link href={info.href} _hover={{ textDecoration: 'none' }}>
-//       {content}
-//     </Link>
-//   ) : (
-//     content
-//   );
-// };
-
 const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
   const content = (
     <HStack
@@ -211,6 +162,10 @@ export const ContactSection: React.FC = () => {
   const bgGradient =
     'linear(110deg, green.900 0%, black 15%, green.900 50%,  black 85%, )';
 
+  const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -225,45 +180,39 @@ export const ContactSection: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        'https://formsubmit.co/abdulazeezmuritador9@gmail.com',
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-          }),
-        }
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          time: new Date().toLocaleString(),
+        },
+        EMAILJS_PUBLIC_KEY
       );
 
-      if (response.ok) {
-        // Save name for thank you message
-        setSubmitterName(formData.name);
+      // Save name for thank you message
+      setSubmitterName(formData.name);
 
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
-        });
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
 
-        // Show thank you modal
-        onOpen();
-      } else {
-        throw new Error('Failed to send message');
-      }
-    } catch {
+      // Show thank you modal
+      onOpen();
+    } catch (error) {
+      console.error('Error sending email:', error);
       toast({
         title: 'Error sending message',
         description:
-          'Something went wrong. Please try again or email me directly.',
+          'Something went wrong. Please try again or email me directly at abdulazeezmuritador9@gmail.com',
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -373,7 +322,7 @@ export const ContactSection: React.FC = () => {
                     type='email'
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder='abdulazeezmuritador9@gmail.com'
+                    placeholder='your.email@example.com'
                     size='lg'
                     bg='rgba(255, 255, 255, 0.1)'
                     borderColor='green.700'
