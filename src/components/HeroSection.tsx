@@ -109,7 +109,9 @@ export const HeroSection: React.FC = () => {
                   color: 'white',
                 }}
                 transition='all 0.2s'
-                disabled
+                isDisabled={true}
+                pointerEvents='none'
+                opacity={0.4}
               >
                 Download CV
               </Button>

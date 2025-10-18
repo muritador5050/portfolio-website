@@ -71,8 +71,8 @@ export const Footer: React.FC = () => {
               azmuritador
             </Text>
             <Text color='gray.300' fontSize='sm'>
-              Software Engineer & Full Stack Developer passionate about creating
-              innovative solutions and beautiful user experiences.
+              Full Stack Software Engineer passionate about creating innovative
+              solutions and beautiful user experiences.
             </Text>
             <HStack spacing='3'>
               {socialLinks.map((social, index) => (
@@ -166,7 +166,7 @@ export const Footer: React.FC = () => {
           spacing='4'
         >
           <Text fontSize='sm' color='gray.300'>
-            © {currentYear} Abdulazeez Muritador. All rights reserved.
+            © {currentYear} azmuritador. All rights reserved.
           </Text>
           <HStack spacing='1' fontSize='sm' color='gray.300'>
             <Text>Built with</Text>

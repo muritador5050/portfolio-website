@@ -25,7 +25,6 @@ const ContactSection = lazy(() =>
 export const bgGradient =
   'linear(110deg, green.900 0%, black 15%, green.900 50%, black 85%)';
 
-// Reusable loading component
 const LoadingFallback = ({ text = 'Loading...' }: { text?: string }) => (
   <Flex justify='center' align='center' h='60vh' direction='column' gap={3}>
     <Spinner
