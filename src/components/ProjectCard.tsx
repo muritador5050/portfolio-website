@@ -1,5 +1,7 @@
 import {
-  Box,
+  Card,
+  CardBody,
+  CardHeader,
   Image,
   Heading,
   Text,
@@ -8,6 +10,7 @@ import {
   Stack,
   HStack,
   Link,
+  Box,
 } from '@chakra-ui/react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import type { Project } from '../types/project';
@@ -18,10 +21,9 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <Box
-      borderWidth='1px'
+    <Card
+      variant='outline'
       borderColor='green.700'
-      borderRadius='lg'
       overflow='hidden'
       bg='rgba(255, 255, 255, 0.05)'
       backdropFilter='blur(10px)'
@@ -34,12 +36,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       }}
     >
       {/* 🖼️ Image */}
-      <Box position='relative' overflow='hidden' h='240px'>
+      <Box position='relative' overflow='hidden' h='200px' bg='gray.800'>
         <Image
           src={project.images[0]}
-          fallbackSrc='https://via.placeholder.com/400x300?text=Image+Not+Found'
+          fallbackSrc='https://placehold.co/800x600/1F2937/F9FAFB?text=Image+Unavailable'
           alt={project.name}
-          objectFit='cover'
+          objectFit='contain'
           w='100%'
           h='100%'
           transition='transform 0.3s'
@@ -64,12 +66,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </Box>
 
       {/* 📄 Content */}
-      <Box p='6'>
-        <Stack spacing='3'>
-          <Heading size='md' noOfLines={1} color='white'>
-            {project.name}
-          </Heading>
+      <CardHeader pb='0'>
+        <Heading size='md' noOfLines={1} color='white'>
+          {project.name}
+        </Heading>
+      </CardHeader>
 
+      <CardBody>
+        <Stack spacing='3'>
           <Text color='gray.300' noOfLines={3} fontSize='sm'>
             {project.description}
           </Text>
@@ -129,7 +133,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             )}
           </HStack>
         </Stack>
-      </Box>
-    </Box>
+      </CardBody>
+    </Card>
   );
 };

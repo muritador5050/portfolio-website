@@ -66,8 +66,9 @@ export const Footer: React.FC = () => {
               fontWeight='bold'
               bgGradient='linear(to-r, green.300, green.500)'
               bgClip='text'
+              fontFamily='"Lobster", cursive'
             >
-              Abdulazeez.dev
+              azmuritador
             </Text>
             <Text color='gray.300' fontSize='sm'>
               Software Engineer & Full Stack Developer passionate about creating

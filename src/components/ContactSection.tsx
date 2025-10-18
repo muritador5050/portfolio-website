@@ -207,8 +207,7 @@ export const ContactSection: React.FC = () => {
 
       // Show thank you modal
       onOpen();
-    } catch (error) {
-      console.error('Error sending email:', error);
+    } catch {
       toast({
         title: 'Error sending message',
         description:

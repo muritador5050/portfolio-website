@@ -41,7 +41,6 @@ export const Navbar: React.FC = () => {
       position='sticky'
       top='0'
       zIndex='1000'
-      // backdropFilter='blur(10px)'
       bg='rgba(0, 0, 0, 0.95)'
       boxShadow='sm'
     >
