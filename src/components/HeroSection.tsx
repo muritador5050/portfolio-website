@@ -55,14 +55,14 @@ export const HeroSection: React.FC = () => {
 
             {/* Title/Role */}
             <Heading as='h2' size='xl' color='green.200' fontWeight='medium'>
-              Software Engineer & Full Stack Developer
+              Full Stack Software Engineer
             </Heading>
 
             {/* Description */}
             <Text fontSize='lg' color='gray.300' lineHeight='tall'>
-              I build exceptional digital experiences with modern web
-              technologies. Passionate about creating scalable, user-friendly
-              applications that solve real-world problems.
+              I build exceptional digital experiences with the MERN stack and
+              Java Spring Boot. Passionate about creating scalable,
+              user-friendly applications that solve real-world problems.
             </Text>
 
             {/* CTA Buttons */}
@@ -109,6 +109,7 @@ export const HeroSection: React.FC = () => {
                   color: 'white',
                 }}
                 transition='all 0.2s'
+                disabled
               >
                 Download CV
               </Button>
