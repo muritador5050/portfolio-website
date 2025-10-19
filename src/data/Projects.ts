@@ -14,6 +14,9 @@ export const projects: Project[] = [
       'Express',
       'MongoDB',
       'Stripe',
+      'PayStack',
+      'Chakra UI',
+      'Rechart',
     ],
     githubUrl:
       'https://github.com/muritador5050/Multi-vendor-E-commerce-Platform',
@@ -34,6 +37,7 @@ export const projects: Project[] = [
       'Chakra UI',
       'Express',
       'Socket.io',
+      'Rechart',
     ],
     githubUrl: 'https://github.com/muritador5050/testwise',
     liveUrl: 'https://testwise-cbt.netlify.app',
@@ -58,7 +62,7 @@ export const projects: Project[] = [
     description:
       'A modern enterprise application built with Next.js and Firebase. It includes real-time communication, calendar scheduling, and a responsive management dashboard.',
     images: ['enterprise/ent001.png'],
-    technologies: ['Next.js', 'Firebase', 'Chakra UI', 'TypeScript'],
+    technologies: ['Next.js', 'Firebase', 'Chakra UI', 'TypeScript', 'Rechart'],
     githubUrl: 'https://github.com/muritador5050/enterprise-suite',
     liveUrl: 'https://muritador-enterprise-suite.vercel.app',
     featured: false,
@@ -82,7 +86,7 @@ export const projects: Project[] = [
     description:
       'A simple and responsive currency converter and calculator with live exchange rate updates. Built with a clean UI and lightweight architecture.',
     images: ['/currency_calculator/cal001.png'],
-    technologies: ['React', 'Chakra UI', 'Exchange Rate API'],
+    technologies: ['React', 'Exchange Rate API'],
     githubUrl:
       'https://github.com/muritador5050/calculator_-_currency_converter',
     liveUrl: 'https://calculator-currency-converter.vercel.app',
